@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cupidonic 2.0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .section {
+      padding: 36px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__title {
+      text-align: center;
+      font-size: clamp(22px, 3.5vw, 38px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 48px;
+      color: #fff;
+    }
+
+    .section__title .highlight { color: #6d388b; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 749px) {
+      .grid { grid-template-columns: 1fr; }
+      .col-video-desktop { display: none; }
+      .col-video-mobile { display: block !important; margin-bottom: 32px; }
+    }
+
+    .col-video-mobile { display: none; }
+
+    .steps { display: flex; flex-direction: column; gap: 40px; }
+
+    .step { display: flex; align-items: flex-start; gap: 16px; }
+
+    .step__icon {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #333;
+    }
+
+    .step__icon svg { width: 30px; height: 30px; fill: #6d388b; }
+
+    .step__content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .step__content p { font-size: 14px; line-height: 1.65; color: #ccc; }
+    .step__content p + p { margin-top: 6px; }
+
+    /* VIDÉO */
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .play-btn:hover {
+      background: rgba(109, 56, 139, 0.85);
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .play-btn svg {
+      width: 36px;
+      height: 36px;
+      fill: #fff;
+      margin-left: 6px;
+    }
+
+    .play-btn.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="section">
+
+  <h2 class="section__title">
+    CE QUI VA CHANGER AVEC <span class="highlight">CUPIDONIC 2.0</span>
+  </h2>
+
+  <!-- Vidéo mobile -->
+  <div class="col-video-mobile">
+    <div class="video-container">
+      <video id="vid-mobile" src="https://res.cloudinary.com/drmrp07ci/video/upload/v1782263011/Parfum_t8ksxe.mp4" loop playsinline preload="metadata"></video>
+      <div class="play-btn" id="btn-mobile" onclick="togglePlay('vid-mobile','btn-mobile')">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- Gauche -->
+    <div class="steps">
+      <div class="step">
+        <div class="step__icon">
+          <svg viewBox="0 0 64 64"><path d="M32 4C23.16 4 16 11.16 16 20v20c0 4.42-3.58 8-8 8v4c6.63 0 12-5.37 12-12V20c0-6.63 5.37-12 12-12s12 5.37 12 12v14h4V20C48 11.16 40.84 4 32 4z"/><path d="M44 34h-4v8c0 4.42 3.58 8 8 8h4v-4h-4c-2.21 0-4-1.79-4-4v-8z"/></svg>
+        </div>
+        <div class="step__content">
+          <h3>Détection</h3>
+          <p>Des récepteurs spécialisés dans la cavité nasale d'une femme détectent les molécules de phéromones présentes dans notre parfum.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step__icon">
+          <svg viewBox="0 0 64 64"><path d="M50 22c0-3.31-2.69-6-6-6-.34 0-.67.04-1 .09C41.58 13.27 38.05 11 34 11c-1.48 0-2.88.33-4.13.9C28.48 10.73 26.33 10 24 10c-5.52 0-10 4.48-10 10 0 .34.02.67.05 1C11.69 22.69 10 25.16 10 28c0 3.31 2.69 6 6 6h1v12h2V34h2v12h2V34h2v12h2V34h2v12h2V34h1c3.31 0 6-2.69 6-6 0-1.09-.3-2.1-.81-2.97C49.16 24.54 50 23.35 50 22z"/></svg>
+        </div>
+        <div class="step__content">
+          <h3>Réponse du cerveau</h3>
+          <p>Cela déclenche un signal vers le système limbique du cerveau, responsable des émotions et des comportements.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centre : vidéo desktop -->
+    <div class="col-video-desktop">
+      <div class="video-container">
+        <video id="vid-desktop" src="https://res.cloudinary.com/drmrp07ci/video/upload/v1782263011/Parfum_t8ksxe.mp4" loop playsinline preload="metadata"></video>
+        <div class="play-btn" id="btn-desktop" onclick="togglePlay('vid-desktop','btn-desktop')">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Droite -->
+    <div class="steps">
+      <div class="step">
+        <div class="step__icon">
+          <svg viewBox="0 0 64 64"><path d="M32 54L7.76 30.24C5.5 28 4 24.9 4 21.5 4 14.6 9.6 9 16.5 9c3.82 0 7.21 1.73 9.5 4.45C28.29 10.73 31.68 9 35.5 9 42.4 9 48 14.6 48 21.5c0 3.4-1.5 6.5-3.76 8.74L32 54z"/></svg>
+        </div>
+        <div class="step__content">
+          <h3>Séduction</h3>
+          <p>Cela stimule les instincts primaires de séduction et d'excitation.</p>
+          <p>Sens ton impact dans le regard des femmes, deviens impossible à ignorer.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function togglePlay(videoId, btnId) {
+    const video = document.getElementById(videoId);
+    const btn = document.getElementById(btnId);
+    if (video.paused) {
+      video.play();
+      btn.classList.add('hidden');
+    } else {
+      video.pause();
+      btn.classList.remove('hidden');
+    }
+  }
+
+  // Ré-affiche le bouton play quand la vidéo est en pause
+  ['vid-mobile', 'vid-desktop'].forEach(function(id) {
+    const v = document.getElementById(id);
+    if (v) {
+      v.addEventListener('pause', function() {
+        const btnId = id === 'vid-mobile' ? 'btn-mobile' : 'btn-desktop';
+        document.getElementById(btnId).classList.remove('hidden');
+      });
+      v.addEventListener('click', function() {
+        const btnId = id === 'vid-mobile' ? 'btn-mobile' : 'btn-desktop';
+        togglePlay(id, btnId);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
